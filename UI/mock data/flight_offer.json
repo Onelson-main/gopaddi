@@ -1,0 +1,570 @@
+      {
+        "token": "d7699_H4sIAAAAAAAA_y2QUXOjIBSFf037VFFAQTvDdFKN3bRq1tQ0Y18YQ4zRpGFH6Mb11y8xHeCe75y5DMw9aP1HPdr2_tQ2B62sbwUaqWVT6RoI-WXve1O2Uh7bc2NXbW8_L9NoniAvW344KJqHNnyA9MGxLbPEY_lUD9pSvWD37bYGlRIMFj_YMwIwef1Y_Eo2UySkZi7Av2Mcxjh_cW9hz17KN0qCye1YGl6G5ThTaaHcJJrRdO2qrFAoCy8w79S4npdj7pRjBk_LJMryVZdFqy7Fm_WRpsUCrd4vQ9p9xkl8CFftUObHkuanXF1PUrx-JpEYpqdqYf4KgEsDOHlZKQbpDYVmyL_hTrN37DnP5GY1w5QSPJmBQUSxf6_qUy10K89v9T9G5ohSzzIDk38RtnI-WxDqW2Z2tTB-fYdC6H6T3Zdv6A7PzG64AxyjB6PQaMWRD-JrsuWBZ0Tw4Nq6414gkDBUc0T2yMCeu6a2HAI4Xe34YmNk5AFRmp7_A23DfwruAQAA",
+        "segments": [
+          {
+            "departureAirport": {
+              "type": "AIRPORT",
+              "code": "BOM",
+              "city": "BOM",
+              "cityName": "Mumbai",
+              "country": "IN",
+              "countryName": "India",
+              "name": "Mumbai"
+            },
+            "arrivalAirport": {
+              "type": "AIRPORT",
+              "code": "DEL",
+              "city": "DEL",
+              "cityName": "Delhi",
+              "country": "IN",
+              "countryName": "India",
+              "name": "Delhi"
+            },
+            "departureTime": "2023-11-25T01:20:00",
+            "arrivalTime": "2023-11-25T03:20:00",
+            "legs": [
+              {
+                "departureTime": "2023-11-25T01:20:00",
+                "arrivalTime": "2023-11-25T03:20:00",
+                "departureAirport": {
+                  "type": "AIRPORT",
+                  "code": "BOM",
+                  "city": "BOM",
+                  "cityName": "Mumbai",
+                  "country": "IN",
+                  "countryName": "India",
+                  "name": "Mumbai"
+                },
+                "arrivalAirport": {
+                  "type": "AIRPORT",
+                  "code": "DEL",
+                  "city": "DEL",
+                  "cityName": "Delhi",
+                  "country": "IN",
+                  "countryName": "India",
+                  "name": "Delhi"
+                },
+                "cabinClass": "ECONOMY",
+                "flightInfo": {
+                  "facilities": [],
+                  "flightNumber": 2775,
+                  "planeType": "",
+                  "carrierInfo": {
+                    "operatingCarrier": "6E",
+                    "marketingCarrier": "6E",
+                    "operatingCarrierDisclosureText": ""
+                  }
+                },
+                "carriers": [
+                  "6E",
+                  "6E"
+                ],
+                "carriersData": [
+                  {
+                    "name": "IndiGo",
+                    "code": "6E",
+                    "logo": "https://r-xx.bstatic.com/data/airlines_logo/6E.png"
+                  },
+                  {
+                    "name": "IndiGo",
+                    "code": "6E",
+                    "logo": "https://r-xx.bstatic.com/data/airlines_logo/6E.png"
+                  }
+                ],
+                "totalTime": 7200,
+                "flightStops": []
+              }
+            ],
+            "totalTime": 7200,
+            "travellerCheckedLuggage": [
+              {
+                "travellerReference": "1",
+                "luggageAllowance": {
+                  "luggageType": "CHECKED_IN",
+                  "ruleType": "PIECE_BASED",
+                  "maxPiece": 1,
+                  "maxWeightPerPiece": 33.1,
+                  "massUnit": "LB"
+                }
+              },
+              {
+                "travellerReference": "2",
+                "luggageAllowance": {
+                  "luggageType": "CHECKED_IN",
+                  "ruleType": "PIECE_BASED",
+                  "maxPiece": 1,
+                  "maxWeightPerPiece": 33.1,
+                  "massUnit": "LB"
+                }
+              }
+            ],
+            "travellerCabinLuggage": [
+              {
+                "travellerReference": "1",
+                "luggageAllowance": {
+                  "luggageType": "HAND",
+                  "maxPiece": 1,
+                  "maxWeightPerPiece": 15.4,
+                  "massUnit": "LB",
+                  "sizeRestrictions": {
+                    "maxLength": 21.7,
+                    "maxWidth": 13.8,
+                    "maxHeight": 9.8,
+                    "sizeUnit": "INCH"
+                  }
+                }
+              },
+              {
+                "travellerReference": "2",
+                "luggageAllowance": {
+                  "luggageType": "HAND",
+                  "maxPiece": 1,
+                  "maxWeightPerPiece": 15.4,
+                  "massUnit": "LB",
+                  "sizeRestrictions": {
+                    "maxLength": 21.7,
+                    "maxWidth": 13.8,
+                    "maxHeight": 9.8,
+                    "sizeUnit": "INCH"
+                  }
+                }
+              }
+            ],
+            "isAtolProtected": false,
+            "showWarningDestinationAirport": false,
+            "showWarningOriginAirport": false
+          },
+          {
+            "departureAirport": {
+              "type": "AIRPORT",
+              "code": "DEL",
+              "city": "DEL",
+              "cityName": "Delhi",
+              "country": "IN",
+              "countryName": "India",
+              "name": "Delhi"
+            },
+            "arrivalAirport": {
+              "type": "AIRPORT",
+              "code": "BOM",
+              "city": "BOM",
+              "cityName": "Mumbai",
+              "country": "IN",
+              "countryName": "India",
+              "name": "Mumbai"
+            },
+            "departureTime": "2023-12-02T09:00:00",
+            "arrivalTime": "2023-12-02T10:55:00",
+            "legs": [
+              {
+                "departureTime": "2023-12-02T09:00:00",
+                "arrivalTime": "2023-12-02T10:55:00",
+                "departureAirport": {
+                  "type": "AIRPORT",
+                  "code": "DEL",
+                  "city": "DEL",
+                  "cityName": "Delhi",
+                  "country": "IN",
+                  "countryName": "India",
+                  "name": "Delhi"
+                },
+                "arrivalAirport": {
+                  "type": "AIRPORT",
+                  "code": "BOM",
+                  "city": "BOM",
+                  "cityName": "Mumbai",
+                  "country": "IN",
+                  "countryName": "India",
+                  "name": "Mumbai"
+                },
+                "cabinClass": "ECONOMY",
+                "flightInfo": {
+                  "facilities": [],
+                  "flightNumber": 678,
+                  "planeType": "321",
+                  "carrierInfo": {
+                    "operatingCarrier": "AI",
+                    "marketingCarrier": "AI",
+                    "operatingCarrierDisclosureText": ""
+                  }
+                },
+                "carriers": [
+                  "AI",
+                  "AI"
+                ],
+                "carriersData": [
+                  {
+                    "name": "Air India",
+                    "code": "AI",
+                    "logo": "https://r-xx.bstatic.com/data/airlines_logo/AI.png"
+                  },
+                  {
+                    "name": "Air India",
+                    "code": "AI",
+                    "logo": "https://r-xx.bstatic.com/data/airlines_logo/AI.png"
+                  }
+                ],
+                "totalTime": 6900,
+                "flightStops": [],
+                "departureTerminal": "3",
+                "arrivalTerminal": "2"
+              }
+            ],
+            "totalTime": 6900,
+            "travellerCheckedLuggage": [
+              {
+                "travellerReference": "1",
+                "luggageAllowance": {
+                  "luggageType": "CHECKED_IN",
+                  "ruleType": "WEIGHT_BASED",
+                  "maxTotalWeight": 44.1,
+                  "massUnit": "LB",
+                  "maxPiece": 1
+                }
+              },
+              {
+                "travellerReference": "2",
+                "luggageAllowance": {
+                  "luggageType": "CHECKED_IN",
+                  "ruleType": "WEIGHT_BASED",
+                  "maxTotalWeight": 44.1,
+                  "massUnit": "LB",
+                  "maxPiece": 1
+                }
+              }
+            ],
+            "travellerCabinLuggage": [
+              {
+                "travellerReference": "1",
+                "luggageAllowance": {
+                  "luggageType": "HAND",
+                  "maxPiece": 1,
+                  "maxWeightPerPiece": 17.6,
+                  "massUnit": "LB",
+                  "sizeRestrictions": {
+                    "maxLength": 21.7,
+                    "maxWidth": 13.8,
+                    "maxHeight": 9.8,
+                    "sizeUnit": "INCH"
+                  }
+                },
+                "personalItem": true
+              },
+              {
+                "travellerReference": "2",
+                "luggageAllowance": {
+                  "luggageType": "HAND",
+                  "maxPiece": 1,
+                  "maxWeightPerPiece": 17.6,
+                  "massUnit": "LB",
+                  "sizeRestrictions": {
+                    "maxLength": 21.7,
+                    "maxWidth": 13.8,
+                    "maxHeight": 9.8,
+                    "sizeUnit": "INCH"
+                  }
+                },
+                "personalItem": true
+              }
+            ],
+            "isAtolProtected": false,
+            "showWarningDestinationAirport": false,
+            "showWarningOriginAirport": false
+          }
+        ],
+        "priceBreakdown": {
+          "total": {
+            "currencyCode": "AED",
+            "units": 1387,
+            "nanos": 50000000
+          },
+          "baseFare": {
+            "currencyCode": "AED",
+            "units": 1175,
+            "nanos": 50000000
+          },
+          "fee": {
+            "currencyCode": "AED",
+            "units": 0,
+            "nanos": 0
+          },
+          "tax": {
+            "currencyCode": "AED",
+            "units": 212,
+            "nanos": 10000000
+          },
+          "totalRounded": {
+            "currencyCode": "AED",
+            "nanos": 410000000,
+            "units": 1388
+          },
+          "moreTaxesAndFees": {},
+          "discount": {
+            "currencyCode": "AED",
+            "units": 0,
+            "nanos": 0
+          },
+          "totalWithoutDiscount": {
+            "currencyCode": "AED",
+            "units": 1387,
+            "nanos": 50000000
+          },
+          "totalWithoutDiscountRounded": {
+            "currencyCode": "AED",
+            "nanos": 410000000,
+            "units": 1388
+          },
+          "carrierTaxBreakdown": [
+            {
+              "carrier": {
+                "name": "IndiGo",
+                "code": "6E",
+                "logo": "https://r-xx.bstatic.com/data/airlines_logo/6E.png"
+              },
+              "avgPerAdult": {
+                "currencyCode": "AED",
+                "units": 57,
+                "nanos": 40000000
+              },
+              "avgPerChild": {
+                "currencyCode": "AED",
+                "units": 57,
+                "nanos": 40000000
+              }
+            },
+            {
+              "carrier": {
+                "name": "Air India",
+                "code": "AI",
+                "logo": "https://r-xx.bstatic.com/data/airlines_logo/AI.png"
+              },
+              "avgPerAdult": {
+                "currencyCode": "AED",
+                "units": 43,
+                "nanos": 640000000
+              },
+              "avgPerChild": {
+                "currencyCode": "AED",
+                "units": 43,
+                "nanos": 640000000
+              },
+              "avgPerInfant": {
+                "currencyCode": "AED",
+                "units": 10,
+                "nanos": 650000000
+              }
+            }
+          ]
+        },
+        "travellerPrices": [
+          {
+            "travellerPriceBreakdown": {
+              "total": {
+                "currencyCode": "AED",
+                "units": 624,
+                "nanos": 50000000
+              },
+              "baseFare": {
+                "currencyCode": "AED",
+                "units": 520,
+                "nanos": 400000000
+              },
+              "fee": {
+                "currencyCode": "AED",
+                "units": 0,
+                "nanos": 0
+              },
+              "tax": {
+                "currencyCode": "AED",
+                "units": 100,
+                "nanos": 680000000
+              },
+              "totalRounded": {
+                "currencyCode": "AED",
+                "nanos": 750000000,
+                "units": 620
+              },
+              "moreTaxesAndFees": {},
+              "discount": {
+                "currencyCode": "AED",
+                "units": 0,
+                "nanos": 0
+              },
+              "totalWithoutDiscount": {
+                "currencyCode": "AED",
+                "units": 624,
+                "nanos": 50000000
+              },
+              "totalWithoutDiscountRounded": {
+                "currencyCode": "AED",
+                "nanos": 750000000,
+                "units": 620
+              }
+            },
+            "travellerReference": "1",
+            "travellerType": "ADULT"
+          },
+          {
+            "travellerPriceBreakdown": {
+              "total": {
+                "currencyCode": "AED",
+                "units": 623,
+                "nanos": 680000000
+              },
+              "baseFare": {
+                "currencyCode": "AED",
+                "units": 520,
+                "nanos": 360000000
+              },
+              "fee": {
+                "currencyCode": "AED",
+                "units": 0,
+                "nanos": 0
+              },
+              "tax": {
+                "currencyCode": "AED",
+                "units": 100,
+                "nanos": 680000000
+              },
+              "totalRounded": {
+                "currencyCode": "AED",
+                "nanos": 750000000,
+                "units": 620
+              },
+              "moreTaxesAndFees": {},
+              "discount": {
+                "currencyCode": "AED",
+                "units": 0,
+                "nanos": 0
+              },
+              "totalWithoutDiscount": {
+                "currencyCode": "AED",
+                "units": 623,
+                "nanos": 680000000
+              },
+              "totalWithoutDiscountRounded": {
+                "currencyCode": "AED",
+                "nanos": 750000000,
+                "units": 620
+              }
+            },
+            "travellerReference": "2",
+            "travellerType": "KID"
+          },
+          {
+            "travellerPriceBreakdown": {
+              "total": {
+                "currencyCode": "AED",
+                "units": 144,
+                "nanos": 940000000
+              },
+              "baseFare": {
+                "currencyCode": "AED",
+                "units": 134,
+                "nanos": 290000000
+              },
+              "fee": {
+                "currencyCode": "AED",
+                "units": 0,
+                "nanos": 0
+              },
+              "tax": {
+                "currencyCode": "AED",
+                "units": 10,
+                "nanos": 650000000
+              },
+              "totalRounded": {
+                "currencyCode": "AED",
+                "nanos": 250000000,
+                "units": 143
+              },
+              "moreTaxesAndFees": {},
+              "discount": {
+                "currencyCode": "AED",
+                "units": 0,
+                "nanos": 0
+              },
+              "totalWithoutDiscount": {
+                "currencyCode": "AED",
+                "units": 144,
+                "nanos": 940000000
+              },
+              "totalWithoutDiscountRounded": {
+                "currencyCode": "AED",
+                "nanos": 250000000,
+                "units": 143
+              }
+            },
+            "travellerReference": "3",
+            "travellerType": "KID"
+          }
+        ],
+        "priceDisplayRequirements": [],
+        "pointOfSale": "us",
+        "tripType": "ROUNDTRIP",
+        "posMismatch": {
+          "detectedPointOfSale": "us",
+          "isPOSMismatch": false,
+          "offerSalesCountry": "us"
+        },
+        "includedProducts": {
+          "areAllSegmentsIdentical": false,
+          "segments": [
+            [
+              {
+                "luggageType": "HAND",
+                "maxPiece": 2,
+                "maxWeightPerPiece": 15.4,
+                "massUnit": "LB",
+                "sizeRestrictions": {
+                  "maxLength": 21.7,
+                  "maxWidth": 13.8,
+                  "maxHeight": 9.8,
+                  "sizeUnit": "INCH"
+                }
+              },
+              {
+                "luggageType": "CHECKED_IN",
+                "ruleType": "PIECE_BASED",
+                "maxPiece": 2,
+                "maxWeightPerPiece": 33.1,
+                "massUnit": "LB"
+              }
+            ],
+            [
+              {
+                "luggageType": "PERSONAL_ITEM",
+                "maxPiece": 2
+              },
+              {
+                "luggageType": "HAND",
+                "maxPiece": 2,
+                "maxWeightPerPiece": 17.6,
+                "massUnit": "LB",
+                "sizeRestrictions": {
+                  "maxLength": 21.7,
+                  "maxWidth": 13.8,
+                  "maxHeight": 9.8,
+                  "sizeUnit": "INCH"
+                }
+              },
+              {
+                "luggageType": "CHECKED_IN",
+                "ruleType": "WEIGHT_BASED",
+                "maxTotalWeight": 44.1,
+                "massUnit": "LB",
+                "maxPiece": 2
+              }
+            ]
+          ]
+        },
+        "extraProducts": [],
+        "offerExtras": {},
+        "ancillaries": {},
+        "appliedDiscounts": [],
+        "offerKeyToHighlight": "1_6E2775_2_AI678",
+        "seatAvailability": {
+          "numberOfSeatsAvailable": 3
+        },
+        "extraProductDisplayRequirements": {}
+      }
