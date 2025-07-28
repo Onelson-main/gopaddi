@@ -75,7 +75,7 @@ export default function AddHotelModal() {
     const [searchTerm, setSearchTerm] = useState('')
     const [hotels, setHotels] = useState<HotelDetail[]>([])
 
-    const { addHotel } = useStore()
+    const { addHotel,showLoading,hideLoading } = useStore()
 
 
     const today = new Date().toISOString().split('T')[0]
@@ -101,8 +101,7 @@ export default function AddHotelModal() {
                         checkOutDate: ""
                     }}
                     onSubmit={async (values) => {
-                        console.log(values);
-
+                        
                         try {
                             if (!values.selectedCity) {
                                 toast.info("Please fill the required details")

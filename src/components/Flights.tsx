@@ -23,7 +23,7 @@ export default function Flights() {
             </div>
             {flights.length > 0
                 ? flights.map((flight, index) => (
-                    <AirlineCard key={flight.flightIndex} flight={flight} index={index} />
+                    <AirlineCard key={index} flight={flight} index={index} />
                 ))
                 : <div className="bg-BACKGROUND-2 flex flex-col justify-center items-center p-8 rounded">
                     <Image src="/img/flight.png" className="w-20 h-20" height={100} width={100} alt="hotel_image" quality={100}></Image>

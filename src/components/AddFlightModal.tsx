@@ -52,9 +52,9 @@ function AirportDropdown({ isOpen, searchTerm, onSearchChange, onSelect, onClose
                 />
             </div>
             <div className="max-h-48 overflow-y-auto">
-                {filteredAirports.map((airport) => (
+                {filteredAirports.map((airport, index) => (
                     <div
-                        key={airport.iata}
+                        key={index}
                         className="p-3 hover:bg-gray-100 cursor-pointer border-b last:border-b-0"
                         onClick={() => {
                             onSelect(airport.iata)
@@ -243,7 +243,7 @@ export default function AddFlightModal() {
                 </Formik>
 
                 {flights.length > 0 && <div className="max-h-[60vh] overflow-y-scroll bg-BACKGROUND gap-8 rounded-t p-8">
-                    {flights.map((flight) => (<div key={flight.flightIndex} className='flex m-8 items-stretch bg-BACKGROUND-2 rounded'>
+                    {flights.map((flight,index) => (<div key={index} className='flex m-8 items-stretch bg-BACKGROUND-2 rounded'>
                         <div className="flex-1 flex flex-col space-y-4">
                             {/* Info */}
                             <div className="flex justify-between items-start p-4 pr-12">
