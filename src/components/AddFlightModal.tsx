@@ -91,6 +91,8 @@ export default function AddFlightModal() {
     const [flights, setFlights] = useState<FlightDetails[]>([]);
     const { addFlight } = useStore();
 
+    const today = new Date().toISOString().split('T')[0]
+
     return (
         <div className="fixed z-[100] left-0 top-0 bg-[#000000E6] h-full w-full flex justify-center items-center p-10">
 
@@ -210,6 +212,7 @@ export default function AddFlightModal() {
                                         className="text-xl font-bold bg-transparent"
                                         value={formatDate(values.departure)}
                                         onChange={(e) => setFieldValue("departure", new Date(e.target.value))}
+                                        min={today}
                                     />
                                 </div>
 
@@ -221,6 +224,7 @@ export default function AddFlightModal() {
                                             className="text-xl font-bold bg-transparent"
                                             value={formatDate(values.return)}
                                             onChange={(e) => setFieldValue("return", new Date(e.target.value))}
+                                            min={values.departure || today}
                                         />
                                     </div>
                                 )}
@@ -244,7 +248,7 @@ export default function AddFlightModal() {
                             {/* Info */}
                             <div className="flex justify-between items-start p-4 pr-12">
                                 <div className="flex items-center space-x-4">
-                                    <Image src="/img/airline_logo.png" height={10} width={10} alt="Airline Logo" className="h-6 w-auto" />
+                                    <Image src="/img/airline_logo.png" height={10} width={10} alt="Airline Logo" className="h-6 w-auto" quality={100} />
                                     <div>
                                         <h3 className="font-bold text-lg text-gray-800">{flight.airline}</h3>
                                         <div className="flex items-center space-x-2 text-sm text-gray-500">

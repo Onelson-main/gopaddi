@@ -6,8 +6,9 @@ import { ActivityDetail } from '@/lib/types/activity_types'
 
 type storeState = {
     flights: FlightDetails[],
-    activities: ActivityDetail[]
-    hotels: HotelDetail[]
+    activities: ActivityDetail[],
+    hotels: HotelDetail[],
+    isLoading: boolean,
 }
 type storeActions = {
     addFlight: (flight: FlightDetails) => void,
@@ -15,7 +16,10 @@ type storeActions = {
     addHotel: (hotel: HotelDetail) => void,
     removeHotel: (index: number) => void,
     addActivity: (activity: ActivityDetail) => void,
-    removeActivity: (index: number) => void
+    removeActivity: (index: number) => void,
+    showLoading: () => void,
+    hideLoading: () => void,
+
 }
 
 type storeType = storeState & storeActions;
@@ -24,6 +28,7 @@ export const useStore = create(immer<storeType>((set) => ({
     activities: [],
     flights: [],
     hotels: [],
+    isLoading: false,
     addFlight: (flight: FlightDetails) => {
         set((state) => {
             state.flights.push(flight);
@@ -54,6 +59,17 @@ export const useStore = create(immer<storeType>((set) => ({
     removeHotel: (index: number) => {
         set(state => {
             state.hotels.splice(index, 1);
+        })
+    },
+
+    showLoading: () => {
+        set(state => {
+            state.isLoading = true;
+        })
+    },
+    hideLoading: () => {
+        set(state => {
+            state.isLoading = false;
         })
     }
 })))

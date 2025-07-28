@@ -26,7 +26,7 @@ export default function Flights() {
                     <AirlineCard key={flight.flightIndex} flight={flight} index={index} />
                 ))
                 : <div className="bg-BACKGROUND-2 flex flex-col justify-center items-center p-8 rounded">
-                    <Image src="/img/flight.png" className="w-20 h-20" height={100} width={100} alt="hotel_image"></Image>
+                    <Image src="/img/flight.png" className="w-20 h-20" height={100} width={100} alt="hotel_image" quality={100}></Image>
                     <strong>No Request yet</strong>
                     <Link className='bg-ACCENT hover:bg-NEUTRAL-2 text-sm text-BACKGROUND-2 hover:text-BACKGROUND-2 rounded p-3 px-10 font-semibold' href="/?search-flight=true">
                         <button >Add Flight</button>
@@ -47,7 +47,7 @@ const AirlineCard = (props: { flight: FlightDetails, index: number }) => {
                 {/* Info */}
                 <div className="flex justify-between items-start p-4 pr-12">
                     <div className="flex items-center space-x-4">
-                        <Image src="/img/airline_logo.png" height={10} width={10} alt="Airline Logo" className="h-6 w-auto" />
+                        <Image src="/img/airline_logo.png" height={10} width={10} alt="Airline Logo" className="h-6 w-auto" quality={100} />
                         <div>
                             <h3 className="font-bold text-lg text-gray-800">{flight.airline}</h3>
                             <div className="flex items-center space-x-2 text-sm text-gray-500">

@@ -25,7 +25,7 @@ export default function Hotels() {
                     <HotelCard key={index} hotel={hotel} index={index} />
                 ))
                 : <div className="bg-BACKGROUND-2 flex flex-col justify-center items-center p-8 rounded">
-                    <Image src="/img/hotel.png" className="w-18 h-20" height={100} width={100} alt="hotel_image"></Image>
+                    <Image src="/img/hotel.png" className="w-18 h-20" height={100} width={100} alt="hotel_image" quality={100}></Image>
                     <strong>No Request yet</strong>
                     <Link href="/?search-hotels=true" className='bg-ACCENT hover:bg-NEUTRAL-2 text-sm text-BACKGROUND-2 hover:text-BACKGROUND-2 rounded p-3 px-10 font-semibold'>
                         Add Hotel
@@ -53,6 +53,7 @@ const HotelCard = (props: { hotel: HotelDetail, index: number }) => {
                             src={hotel.imageUrl}
                             alt="Hotel"
                             className="object-cover rounded aspect-square bg-ACCENT"
+                            quality={100}
                         />
                         <button className="absolute left-2 top-1/2 transform -translate-y-1/2 p-1">
                             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">

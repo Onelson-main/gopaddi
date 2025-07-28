@@ -184,6 +184,7 @@ export default function AddActivityModal() {
                                             src={activity.img}
                                             alt="Attraction"
                                             className="object-cover rounded aspect-square bg-ACCENT"
+                                            quality={100}
                                         />
                                         <button className="absolute left-2 top-1/2 transform -translate-y-1/2 p-1">
                                             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
