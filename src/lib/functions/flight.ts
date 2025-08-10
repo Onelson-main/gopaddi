@@ -3,22 +3,32 @@
 import { FlightDetails } from "../types/flights_types";
 
 interface Airport {
+    type: string;
     code: string;
     name: string;
     city: string;
+    cityName: string;
     country: string;
+    countryName: string;
 }
 
-interface Currency {
-    currencyCode: string;
-    units: number;
-    nanos: number;
+interface CarrierInfo {
+    operatingCarrier: string;
+    marketingCarrier: string;
+    operatingCarrierDisclosureText: string;
 }
 
-interface LuggageAllowance {
-    luggageType: string;
-    maxWeightPerPiece: number;
-    massUnit: string;
+interface FlightInfo {
+    facilities: string[];
+    flightNumber: number;
+    planeType: string;
+    carrierInfo: CarrierInfo;
+}
+
+interface CarrierData {
+    name: string;
+    code: string;
+    logo: string;
 }
 
 interface FlightLeg {
@@ -27,15 +37,52 @@ interface FlightLeg {
     departureAirport: Airport;
     arrivalAirport: Airport;
     cabinClass: string;
-    flightInfo: {
-        flightNumber: number;
-        facilities: string[];
-        carrierInfo: {
-            marketingCarrier: string;
-        };
-    };
-    carriersData: Array<{ name: string; code: string }>;
+    flightInfo: FlightInfo;
+    carriers: string[];
+    carriersData: CarrierData[];
+    totalTime: number;
+    flightStops: any[];
     amenities: any[];
+    departureTerminal?: string;
+    arrivalTerminal?: string;
+}
+
+interface Currency {
+    currencyCode: string;
+    units: number;
+    nanos: number;
+}
+
+interface PriceBreakdown {
+    total: Currency;
+    baseFare: Currency;
+    fee: Currency;
+    tax: Currency;
+    totalRounded?: Currency;
+    discount: Currency;
+    totalWithoutDiscount: Currency;
+    totalWithoutDiscountRounded?: Currency;
+    showPriceStrikethrough: boolean;
+}
+
+interface LuggageAllowance {
+    luggageType: string;
+    ruleType?: string;
+    maxPiece: number;
+    maxWeightPerPiece: number;
+    massUnit: string;
+    sizeRestrictions?: {
+        maxLength: number;
+        maxWidth: number;
+        maxHeight: number;
+        sizeUnit: string;
+    };
+}
+
+interface TravellerLuggage {
+    travellerReference: string;
+    luggageAllowance: LuggageAllowance;
+    personalItem?: boolean;
 }
 
 interface FlightSegment {
@@ -45,120 +92,224 @@ interface FlightSegment {
     arrivalTime: string;
     legs: FlightLeg[];
     totalTime: number;
-    travellerCheckedLuggage: Array<{ luggageAllowance: LuggageAllowance }>;
-    travellerCabinLuggage: Array<{ luggageAllowance: LuggageAllowance }>;
+    travellerCheckedLuggage: TravellerLuggage[];
+    travellerCabinLuggage: TravellerLuggage[];
+    isAtolProtected: boolean;
+    showWarningDestinationAirport: boolean;
+    showWarningOriginAirport: boolean;
 }
 
 interface FlightData {
+    token: string;
     segments: FlightSegment[];
-    priceBreakdown: { total: Currency };
+    priceBreakdown: PriceBreakdown;
+    travellerPrices: any[];
+    priceDisplayRequirements: any[];
+    pointOfSale: string;
+    tripType: string;
 }
 
+// Updated extracted flight information interface
+interface ExtractedFlightInfo {
+    airline: string;
+    flightNumber: string;
+    cabinClass: string;
+    departureTime: string;
+    departureDate: string;
+    duration: string;
+    route: {
+        start: string;
+        end: string;
+        stops: string[];
+    };
+    arrivalTime: string;
+    arrivalDate: string;
+    price: string;
+    facilities: {
+        baggage: string;
+        cabinBaggage: string;
+        inFlightEntertainment: boolean;
+        inFlightMeal: boolean;
+        usbPort: boolean;
+    };
+}
 
-const formatTime = (isoString: string): string => 
-    new Date(isoString).toLocaleTimeString('en-GB', {
+// Helper functions
+function formatTime(isoString: string): string {
+    const date = new Date(isoString);
+    return date.toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit',
         hour12: false
     });
+}
 
-const formatDate = (isoString: string): string => 
-    new Date(isoString).toLocaleDateString('en-GB', {
+function formatDate(isoString: string): string {
+    const date = new Date(isoString);
+    return date.toLocaleDateString('en-GB', {
         weekday: 'short',
         day: '2-digit',
         month: 'short'
     });
+}
 
-const formatDuration = (totalTimeInSeconds: number): string => {
+function formatDuration(totalTimeInSeconds: number): string {
     const hours = Math.floor(totalTimeInSeconds / 3600);
     const minutes = Math.floor((totalTimeInSeconds % 3600) / 60);
     return `${hours}h ${minutes}m`;
-};
+}
 
-const formatPrice = (currency: Currency): string => {
+function formatPrice(currency: Currency): string {
     const total = currency.units + (currency.nanos / 1000000000);
     return `₦ ${total.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-};
+}
 
-const getStops = (legs: FlightLeg[]): string[] => 
-    legs.slice(0, -1).map(leg => leg.arrivalAirport.code);
+function formatRoute(segment: FlightSegment): { start: string; end: string; stops: string[] } {
+    const start = segment.departureAirport.code;
+    const end = segment.arrivalAirport.code;
+    const stops: string[] = [];
 
-const getBaggageInfo = (checkedLuggage: any[], cabinLuggage: any[]) => {
-    const checked = checkedLuggage.find(l => l.luggageAllowance.luggageType === 'CHECKED_IN');
-    const cabin = cabinLuggage.find(l => l.luggageAllowance.luggageType === 'HAND');
-    
-    return {
-        baggage: checked 
-            ? `${Math.round(checked.luggageAllowance.maxWeightPerPiece * 0.453592)}kg`
-            : 'No checked baggage',
-        cabinBaggage: cabin 
-            ? `${Math.round(cabin.luggageAllowance.maxWeightPerPiece * 0.453592)}kg`
-            : 'No cabin baggage'
-    };
-};
+    // If there are multiple legs, the intermediate airports are stops
+    if (segment.legs.length > 1) {
+        for (let i = 0; i < segment.legs.length - 1; i++) {
+            stops.push(segment.legs[i].arrivalAirport.code);
+        }
+    }
 
-const hasFacility = (legs: FlightLeg[], facilityType: string): boolean =>
-    legs.some(leg => 
-        leg.flightInfo.facilities.includes(facilityType) ||
-        leg.amenities.some(a => a.type === facilityType)
-    );
+    return { start, end, stops };
+}
 
+function formatBaggage(luggage: TravellerLuggage[]): { baggage: string; cabinBaggage: string } {
+    const checkedBaggage = luggage.find(l => l.luggageAllowance.luggageType === 'CHECKED_IN');
+    const cabinBaggage = luggage.find(l => l.luggageAllowance.luggageType === 'HAND');
 
-const parseFlightData = (flightOffers: FlightData[], type: "oneway" | "round", source: string): FlightDetails[] => {
-    const flights: FlightDetails[] = [];
+    const baggage = checkedBaggage
+        ? `${Math.round(checkedBaggage.luggageAllowance.maxWeightPerPiece * 0.453592)}kg` // Convert lbs to kg
+        : 'No checked baggage';
 
-    flightOffers.forEach(flightData => {
-        flightData.segments.forEach((segment, index) => {
-            // Skip segments that don't start from the source
-            if (segment.departureAirport.code !== source) return;
+    const cabin = cabinBaggage
+        ? `${Math.round(cabinBaggage.luggageAllowance.maxWeightPerPiece * 0.453592)}kg` // Convert lbs to kg
+        : 'No cabin baggage';
 
-            const primaryCarrier = segment.legs[0].carriersData[0];
-            const flightNumbers = segment.legs
-                .map(leg => `${leg.flightInfo.carrierInfo.marketingCarrier}-${leg.flightInfo.flightNumber}`)
-                .join(', ');
-            
-            const baggageInfo = getBaggageInfo(
-                segment.travellerCheckedLuggage,
-                segment.travellerCabinLuggage
-            );
+    return { baggage, cabinBaggage: cabin };
+}
 
-            const flight: FlightDetails = {
-                type,
-                flightIndex: index + 1,
-                airline: primaryCarrier.name,
-                flightNumber: flightNumbers,
-                cabinClass: segment.legs[0].cabinClass.charAt(0).toUpperCase() + 
-                           segment.legs[0].cabinClass.slice(1).toLowerCase(),
-                departure: {
-                    time: formatTime(segment.departureTime),
-                    date: formatDate(segment.departureTime)
-                },
-                duration: formatDuration(segment.totalTime),
-                route: {
-                    start: segment.departureAirport.code,
-                    end: segment.arrivalAirport.code,
-                    stops: getStops(segment.legs)
-                },
-                arrival: {
-                    time: formatTime(segment.arrivalTime),
-                    date: formatDate(segment.arrivalTime)
-                },
-                price: formatPrice(flightData.priceBreakdown.total),
-                facilities: {
-                    baggage: baggageInfo.baggage,
-                    cabinBaggage: baggageInfo.cabinBaggage,
-                    inFlightEntertainment: hasFacility(segment.legs, 'entertainment'),
-                    inFlightMeal: hasFacility(segment.legs, 'meal'),
-                    usbPort: hasFacility(segment.legs, 'usb')
-                }
-            };
+// Updated main extraction function to handle segments properly
+function extractFlightData(flightData: FlightData): ExtractedFlightInfo[] {
+    const extractedFlights: ExtractedFlightInfo[] = [];
 
-            flights.push(flight);
-        });
+    flightData.segments.forEach((segment) => {
+        const baggageInfo = formatBaggage([
+            ...segment.travellerCheckedLuggage,
+            ...segment.travellerCabinLuggage
+        ]);
+
+        const routeInfo = formatRoute(segment);
+
+        // Get the primary carrier from the first leg
+        const primaryCarrier = segment.legs[0].carriersData[0];
+
+        // Create a combined flight number for multi-leg segments
+        const flightNumbers = segment.legs.map(leg =>
+            `${leg.flightInfo.carrierInfo.marketingCarrier}-${leg.flightInfo.flightNumber}`
+        ).join(', ');
+
+        const extractedFlight: ExtractedFlightInfo = {
+            airline: primaryCarrier.name,
+            flightNumber: flightNumbers,
+            cabinClass: segment.legs[0].cabinClass.charAt(0).toUpperCase() + segment.legs[0].cabinClass.slice(1).toLowerCase(),
+            departureTime: formatTime(segment.departureTime),
+            departureDate: formatDate(segment.departureTime),
+            duration: formatDuration(segment.totalTime),
+            route: routeInfo,
+            arrivalTime: formatTime(segment.arrivalTime),
+            arrivalDate: formatDate(segment.arrivalTime),
+            price: formatPrice(flightData.priceBreakdown.total),
+            facilities: {
+                baggage: baggageInfo.baggage,
+                cabinBaggage: baggageInfo.cabinBaggage,
+                inFlightEntertainment: segment.legs.some(leg =>
+                    leg.flightInfo.facilities.includes('entertainment') ||
+                    leg.amenities.some(a => a.type === 'entertainment')
+                ),
+                inFlightMeal: segment.legs.some(leg =>
+                    leg.flightInfo.facilities.includes('meal') ||
+                    leg.amenities.some(a => a.type === 'meal')
+                ),
+                usbPort: segment.legs.some(leg =>
+                    leg.flightInfo.facilities.includes('usb') ||
+                    leg.amenities.some(a => a.type === 'usb')
+                )
+            }
+        };
+
+        extractedFlights.push(extractedFlight);
     });
 
-    return flights;
-};
+    return extractedFlights;
+}
 
-export { parseFlightData };
+// todo
+function displayFlightInfo(flights: ExtractedFlightInfo[]): object[] {
+    return flights.map((flight, index) => {
+        // const facilities = [];
+        // facilities.push(`Baggage: ${flight.facilities.baggage}, Cabin Baggage: ${flight.facilities.cabinBaggage}`);
+
+        // if (flight.facilities.inFlightEntertainment) {
+        //     facilities.push('In flight entertainment');
+        // }
+        // if (flight.facilities.inFlightMeal) {
+        //     facilities.push('In flight meal');
+        // }
+        // if (flight.facilities.usbPort) {
+        //     facilities.push('USB Port');
+        // }
+
+        return {
+            flightIndex: index + 1,
+            airline: flight.airline,
+            flightNumber: flight.flightNumber,
+            cabinClass: flight.cabinClass,
+            departure: {
+                time: flight.departureTime,
+                date: flight.departureDate
+            },
+            duration: flight.duration,
+            route: flight.route,
+            arrival: {
+                time: flight.arrivalTime,
+                date: flight.arrivalDate
+            },
+            price: flight.price,
+            facilities: flight.facilities
+        };
+    });
+}
+
+
+function parseFlightData(flightOffers: FlightData[], type: "oneway" | "round", source: string): FlightDetails[] {
+    const allFlights: ExtractedFlightInfo[] = [];
+
+    flightOffers.forEach(flightData => {
+        const extractedFlights = extractFlightData(flightData);
+        allFlights.push(...extractedFlights);
+    });
+
+    const flightInfo = displayFlightInfo(allFlights);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return flightInfo.filter((val) => (val.route?.start == source))
+        .map((val) => ({ type, ...val }))
+
+}
+
+export {
+    parseFlightData,
+    formatTime,
+    formatDate,
+    formatDuration,
+    formatPrice,
+    formatRoute,
+    formatBaggage
+};
 export type { FlightData };

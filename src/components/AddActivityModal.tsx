@@ -75,7 +75,7 @@ export default function AddActivityModal() {
     const [searchTerm, setSearchTerm] = useState('')
     const [activities, setActivities] = useState<ActivityDetail[]>([])
 
-    const { addActivity } = useStore()
+    const { addActivity, showLoading, hideLoading } = useStore()
 
     const today = new Date().toISOString().split('T')[0]
 
@@ -101,7 +101,7 @@ export default function AddActivityModal() {
                     onSubmit={async (values) => {
                         console.log('Location:', values.selectedCity);
                         console.log('Start Date:', values.startDate);
-
+                        showLoading()
                         try {
                             if (!values.selectedCity) {
                                 toast.info("Please fill the required details")
@@ -118,6 +118,7 @@ export default function AddActivityModal() {
                             console.log(err);
                             toast.error("an error occurred")
                         }
+                        hideLoading()
                     }}
                 >
                     {({ values, handleSubmit, setFieldValue }) => (

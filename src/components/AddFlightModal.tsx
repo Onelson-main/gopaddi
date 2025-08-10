@@ -89,7 +89,7 @@ export default function AddFlightModal() {
     }
 
     const [flights, setFlights] = useState<FlightDetails[]>([]);
-    const { addFlight } = useStore();
+    const { addFlight, showLoading, hideLoading } = useStore();
 
     const today = new Date().toISOString().split('T')[0]
 
@@ -118,7 +118,7 @@ export default function AddFlightModal() {
                     onSubmit={async (values) => {
                         values.departure = new Date(values.departure).toISOString()
                         values.return = new Date(values.return).toISOString()
-
+                        showLoading()
                         // return
                         try {
                             if (!values.from || !values.to) {
@@ -135,6 +135,7 @@ export default function AddFlightModal() {
                             console.log(err);
                             toast.error("an error occurred")
                         }
+                        hideLoading()
                     }}
                 >
                     {({ values, handleSubmit, setFieldValue }) => (
@@ -243,7 +244,7 @@ export default function AddFlightModal() {
                 </Formik>
 
                 {flights.length > 0 && <div className="max-h-[60vh] overflow-y-scroll bg-BACKGROUND gap-8 rounded-t p-8">
-                    {flights.map((flight,index) => (<div key={index} className='flex m-8 items-stretch bg-BACKGROUND-2 rounded'>
+                    {flights.map((flight, index) => (<div key={index} className='flex m-8 items-stretch bg-BACKGROUND-2 rounded'>
                         <div className="flex-1 flex flex-col space-y-4">
                             {/* Info */}
                             <div className="flex justify-between items-start p-4 pr-12">
